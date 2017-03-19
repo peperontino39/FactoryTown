@@ -16,7 +16,7 @@ void GameMain::onCreate()
 	auto map = Instantiate(new Map());
 	auto item_holder = Instantiate(new ItemHolder());
 	auto building_holder = Instantiate(new BuildingHolder());
-	auto uimanager = Instantiate(new UiManager());
+	auto uimanager = Instantiate(new UiManager("UiJson/GameMainUi.json"));
 
 	auto game_main_task = Instantiate(new GameMainTask());
 

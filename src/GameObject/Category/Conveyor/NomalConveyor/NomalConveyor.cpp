@@ -27,7 +27,7 @@ void NomalConveyor::draw()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	float time = app::getElapsedSeconds() / 2.f;
+	float time = app::getElapsedSeconds();
 	//time = std::fmod(time, 1.f);
 
 	drawQuad(Vec2f(time, 0), Vec2f::one());

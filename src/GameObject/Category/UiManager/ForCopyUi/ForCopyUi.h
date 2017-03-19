@@ -1,7 +1,7 @@
 #pragma once
 #include "../UiBase/UiBase.h"
 
-class ForCopyUi
+class ForCopyUi : public UiBase
 {
 public:
 	

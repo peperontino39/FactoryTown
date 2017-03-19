@@ -1,0 +1,28 @@
+{
+
+    "testButton": {
+        "type": "Image",
+        "position": [ 0, 0, 0 ],
+        "child": {
+            "childTest0": {
+                "type": "Image",
+                "position": [ 100, 100, 0 ]
+            },
+            "childTest1": {
+                "type": "Image",
+                "position": [ -100, 100, 0 ]
+            },
+            "childTest2": {
+                "type": "Image",
+                "position": [ 100, -100, 0 ]
+            },
+            "childTest3": {
+                "type": "Image",
+                "position": [ -100, -100, 0 ]
+            }
+
+        }
+
+    }
+
+}

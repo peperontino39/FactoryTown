@@ -22,9 +22,6 @@ void Map::setup()
 
 }
 
-
-
-
 void Map::mouseMove()
 {
 
@@ -118,7 +115,7 @@ void Map::onItemMap(ItemBase * _item)
 	Easing<Vec3f>::apply(_item->transform.position,
 		map_chip[_sell.y][_sell.x]->transform.position
 		+ (Vec3f::yAxis()/2),
-		EaseNone(), 1.f);
+		EaseInElastic(2, 1), 1.f);
 
 	c_Coroutine(1.f, [_item, this]() {
 		onItemMap(_item);

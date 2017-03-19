@@ -26,11 +26,12 @@ ci::Matrix44f getLookMatrixY(const ci::Vec3f& vec);
 void drawQuad(const ci::Vec2f&, const ci::Vec2f&);
 
 //
-template<typename First, typename... Second>
-void Log(const First&, const Second&...);
+template<class First, class... Second>
+void Log(First, Second...);
 void Log();
-template<typename First, typename ...Second>
-inline void Log(const First & _first, const Second & ... second)
+template<class First, class... Second>
+inline void Log(First _first,Second... second)
 {
-	cinder::app::console() << _first;
+	cinder::app::console() << _first << " ";
+	Log(second...);
 }
