@@ -3,6 +3,8 @@
 #include "cinder/Vector.h"
 
 #include "../Category/GameMain/GameMain.h"
+#include "../Category/EasingTest/EasingTest.h"
+#include "cinder/gl/Material.h"
 
 void SceneManager::setup()
 {
@@ -15,8 +17,10 @@ void SceneManager::setup()
 	camera_ortho.setEyePoint(-ci::Vec3f::zAxis() * 500);
 	camera_ortho.setCenterOfInterestPoint(ci::Vec3f::zAxis() * 500);
 
+	//nowScene = new EasingTest();
 	nowScene = new GameMain();
 
+	
 	nowScene->onCreate();
 	nowScene->setup();
 }

@@ -77,7 +77,8 @@ void MainProjectApp::shutdown()
 void MainProjectApp::update()
 {
 
-	//console() << getAverageFps() << std::endl;
+	console() << getAverageFps() << std::endl;
+	
 	scene_manager.update();
 
 	c_Coroutine.registerUpdate();

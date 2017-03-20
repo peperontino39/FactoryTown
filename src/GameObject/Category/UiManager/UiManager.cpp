@@ -6,8 +6,7 @@
 #include "UiBase/UiBase.h"
 #include "../../../Utility/Utility/Utility.h"
 
-#include "Button/Button.h"
-#include "Image/Image.h"
+
 
 
 using namespace ci;
@@ -24,9 +23,11 @@ UiManager::UiManager(const std::string & _json_path)
 	setUiData(_json_path);
 	uis["hoge"] = new Image();
 
+	
 	auto ima = new Image();
 	ima->transform.position = Vec3f(50, 0,0);
-	uis["hoge"]->addChild("test0", ima);
+	uis["hoge"]->addChild("test0", ima)
+		->transform.position = Vec3f(50, 0, 0);
 
 }
 

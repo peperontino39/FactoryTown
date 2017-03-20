@@ -16,9 +16,10 @@ void UiBase::setIsActive(const bool & _is_active)
 	is_active = _is_active;
 }
 
-void UiBase::addChild(const std::string & _key, UiBase * _ui)
+UiBase* UiBase::addChild(const std::string & _key, UiBase * _ui)
 {
 	uis[_key] = _ui;
+	return _ui;
 }
 
 UiBase* UiBase::getParent()

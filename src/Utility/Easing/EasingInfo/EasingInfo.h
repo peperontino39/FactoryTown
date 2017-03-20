@@ -26,10 +26,17 @@ public:
 	T getLerpValue(float t) {
 		return lerp(beginValue, endValue, easeFunction(t));
 	}
+	void setEndFnction(std::function<void()> Fn){ endFnction = Fn}
+
+
+private:
+	template <class T>
+	friend class EasingInfos;
 
 	std::function<float(float)> easeFunction;
 	float startTime;
 	float endTime;
 	T beginValue;
 	T endValue;
+	std::function<void()> endFnction = [] {};
 };

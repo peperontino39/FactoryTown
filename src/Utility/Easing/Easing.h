@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include "cinder/CinderMath.h"
 #include "EasingInfos/EasingInfos.h"
-
+#include "cinder/Easing.h"
 
 template <class T>
 class Easing
@@ -12,8 +12,7 @@ public:
 	static void update() {
 
 		for (auto it = easingInfos().begin();
-		it != easingInfos().end();
-			)
+		it != easingInfos().end();)
 		{
 			if (!it->second.update()) {
 				it = easingInfos().erase(it);
@@ -24,19 +23,19 @@ public:
 		}
 	}
 	template <class T>
-	static void apply(
+	static EasingInfo<T>& apply(
 		T& _terget,
-		T _endValue,
+		const T& _endValue,
 		std::function<float(float)> _easeFunction,
-		float _time = 1.f)
+		float _time = 1.f)		//イージングを積み上げて行く
 	{
-
-		easingInfos()[&_terget].apply(_terget, _endValue, _easeFunction, _time);
+		return easingInfos()[&_terget].apply(_terget, _endValue, _easeFunction, _time);
 	}
 
 	template <class T>
-	static void clear(T& _terget)
+	static void clear(T& _terget)	//積み上げたイージングをすべて
 	{
+		
 		auto it = easingInfos().find(&_terget);
 		if (it == easingInfos().end())return;
 		easingInfos().erase(it);
@@ -54,7 +53,8 @@ inline std::unordered_map<void*, EasingInfos<T>>& Easing<T>::easingInfos()
 	return _easingInfos;
 }
 
-/*
+/*イージング関数群
+//
 EaseInQuad()
 EaseOutQuad()
 EaseInOutQuad()

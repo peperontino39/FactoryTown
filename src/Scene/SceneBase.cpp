@@ -55,6 +55,7 @@ void SceneBase::drawUI()
 
 void SceneBase::shutdown()
 {
+
 	for (auto& obj : gameObjects) {
 		obj->shutdown();
 	}

@@ -12,39 +12,45 @@ public:
 		if (easingInfos.size() == 0)
 			return false;
 
-		*target = easingInfos.begin()->getValue(getElapsedSeconds());
-		if (easingInfos.begin()->endTime < getElapsedSeconds())
+		auto begin = easingInfos.begin();
+		*target = begin->getValue(getElapsedSeconds());
+		if (begin->endTime < getElapsedSeconds())
 		{
-			*target = easingInfos.begin()->endValue;
-			easingInfos.erase(easingInfos.begin());
+			*target = begin->endValue;	//イージングが終了したらTargetをその値にする
+			
+			easingInfos.erase(begin);
 		}
 		return true;
 	}
-	void apply(
+	EasingInfo<T>& apply(
 		T& _terget,
-		T _endValue,
+		const T& _endValue,
 		std::function<float(float)> _easeFunction,
-		float _time
-		) {
+		const float& _time) {
+
+		T bigin_value;
+		float one_ease_start_time_;
+
 		if (easingInfos.size() == 0) {
 			target = &_terget;
 			startTime = getElapsedSeconds();
-			easingInfos.push_back(EasingInfo<T>(
-				_terget,
-				_endValue,
-				startTime,
-				startTime + _time,
-				_easeFunction));
+
+			bigin_value = _terget;
+			one_ease_start_time_ = startTime;
+
 		}
 		else
 		{
-			easingInfos.push_back(EasingInfo<T>(
-				easingInfos.back().endValue,
-				_endValue,
-				easingInfos.back().endTime,
-				easingInfos.back().endTime + _time,
-				_easeFunction));
+			bigin_value = easingInfos.back().endValue;
+			one_ease_start_time_ = easingInfos.back().endTime;
 		}
+		easingInfos.push_back(EasingInfo<T>(
+			bigin_value,
+			_endValue,
+			one_ease_start_time_,
+			one_ease_start_time_ + _time,
+			_easeFunction));
+		return easingInfos.back();
 	}
 private:
 	T* target;

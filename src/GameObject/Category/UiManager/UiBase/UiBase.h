@@ -11,7 +11,7 @@ public:
 	bool getIsActive();
 	void setIsActive(const bool&);
 
-	void addChild(const std::string&, UiBase*);
+	UiBase* addChild(const std::string&, UiBase*);
 	UiBase* getParent();
 	UiBase* getUi(const std::string&, const std::string&...);
 	UiBase* getUi(const std::string&);
